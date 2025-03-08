@@ -41,7 +41,7 @@ public void draw () {
 }
 
 public boolean isWon() {
-  private int count = 0;
+  int count = 0;
   for (int i = 0; i < mines.size(); i++) {
     if (mines.get(i).isFlagged() == true) {
       count++;
@@ -101,7 +101,7 @@ public boolean isValid(int r, int c) {
 }
 
 public int countMines(int row, int col) {
-  public int numMines = 0;
+  int numMines = 0;
   for (int i = row-1; i < row+2; i++) {
     for (int k = col-1; k < col+2; k++) {
       if (isValid(i, k) == true && mines.contains(buttons[i][k])) {
