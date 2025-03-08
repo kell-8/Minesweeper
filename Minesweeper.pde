@@ -25,7 +25,7 @@ void setup () {
   setMines();
 }
 public void setMines() {
-  while (mines.size() < 83) {
+  while (mines.size() < 2) {
     final int row = (int)(Math.random()*20);
     final int col = (int)(Math.random()*20);
     if (!mines.contains(buttons[row][col])) {
@@ -45,7 +45,6 @@ public boolean isWon() {
   for (int i = 0; i < mines.size(); i++) {
     if (mines.get(i).isFlagged() == true) {
       count++;
-      System.out.println(count);
     }
   }
   if (count == mines.size()) {
@@ -56,19 +55,24 @@ public boolean isWon() {
 
 public void displayLosingMessage() {
   String [] loss = {"Y", "O", "U", " ", "L", "O", "S", "T", " ", ":", "("};
-  for (int i = 0; i < NUM_ROWS; i++) {
-    for (int k = 0; k < NUM_COLS; k++) {
-      buttons[i][k].setLabel("");
-      buttons[i][k].flagged = false;
-    }
-  }
-
   fill(100);
   for (int i = 0; i < loss.length; i++) {
     fill(100);
     buttons[NUM_ROWS/2][NUM_COLS/2 + i -6].setLabel(loss[i]);
   }
-  for (int k = 0; k < mines.size(); k++){
+  for (int i = 0; i < NUM_ROWS; i++) {
+    for (int k = 0; k < NUM_COLS; k++) {
+      buttons[i][k].setLabel("");
+      buttons[i][k].flagged = false;
+      buttons[i][k].clicked = true;
+    }
+  }
+  fill(100);
+  for (int i = 0; i < loss.length; i++) {
+    fill(100);
+    buttons[NUM_ROWS/2][NUM_COLS/2 + i -6].setLabel(loss[i]);
+  }
+  for (int k = 0; k < mines.size(); k++) {
     mines.get(k).clicked = true;
   }
 }
@@ -79,6 +83,7 @@ public void displayWinningMessage() {
     for (int k = 0; k < NUM_COLS; k++) {
       buttons[i][k].setLabel("");
       buttons[i][k].flagged = false;
+      buttons[i][k].clicked = true;
     }
   }
   fill(100);
